@@ -16,6 +16,7 @@ defusedxml==0.6.0
 docker-py==1.8.0
 ecdsa==0.15
 entrypoints==0.3
+fastecdsa==2.0.0
 flake8==3.7.9
 funcsigs==1.0.2
 future==0.18.2
@@ -72,7 +73,7 @@ pywallet==0.1.0
 PyYAML==5.3
 pyzmq==18.1.1
 qtconsole==4.6.0
-requests>=2.20.0
+requests==2.11.1
 Send2Trash==1.5.0
 sha256==0.1
 six==1.14.0
