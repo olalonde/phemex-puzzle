@@ -10,9 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bigint-buffer": "^1.1.5",
     "bs58": "^4.0.1",
-    "jest": "^25.1.0",
     "secp256k1": "^4.0.0"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
   }
 }
