@@ -1,6 +1,8 @@
 ## Usage
 
-[See Notebooks](./notebooks)
+[See Notebooks for Python notebooks](./notebooks)
+
+For JavaScript version, see [./javascript](./javascript).
 
 ## Install
 
