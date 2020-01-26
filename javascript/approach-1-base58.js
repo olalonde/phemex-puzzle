@@ -1,21 +1,30 @@
 const { b58decode, countDigits, compose, bn2buf, prime21 } = require("./utils");
-const { verifyNum } = require("./verify");
+const { verify27Num } = require("./verify");
 const permuations = require("./permutations");
 
 const concat = (acc, x) => `${acc}${x}`;
 const words = ["XRP", "ETH", "BTC", "Phemex"];
 
-// a)
+// sentence wise
+{
+  console.log(countDigits(b58decode("XRPETHBTC")));
+  // 16
+  console.log(countDigits(b58decode(words.join(""))));
+  // 27
+  console.log(b58decode(words.join("")));
+  // 148305363320012921807472785n
+  permuations(words).forEach(words => {
+    verify27Num(b58decode(words.join("")));
+  });
+}
+
+// word wise
 {
   permuations(words).forEach(words => {
     const nums = words.map(b58decode);
     const num = BigInt(nums.map(n => `${n}`).join(""));
     // 27 digits
-    verifyNum(num);
-    verifyNum(prime21 * num);
-    verifyNum(prime21 + num);
-    verifyNum(BigInt(`${prime21}${num}`));
-    verifyNum(BigInt(`${num}${prime21}`));
+    verify27Num(num);
   });
 }
 
