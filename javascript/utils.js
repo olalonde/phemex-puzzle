@@ -32,4 +32,7 @@ const countDigits = bn => {
   return bn.toString().length;
 };
 
-module.exports = { bn2buf, buf2bn, b58decode, countDigits };
+const compose = (...functions) => args =>
+  functions.reduceRight((arg, fn) => fn(arg), args);
+
+module.exports = { bn2buf, buf2bn, b58decode, countDigits, compose };
