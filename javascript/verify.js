@@ -1,4 +1,4 @@
-const { bn2buf, buf2bn } = require("./utils");
+const { bn2buf, buf2bn, prime21 } = require("./utils");
 const secp256k1 = require("secp256k1");
 
 const privkeyToCompressedPubkey = privkeyN => {
@@ -19,4 +19,12 @@ const verifyNum = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
   return matches;
 };
 
-module.exports = { verifyNum, privkeyToCompressedPubkey };
+const verify27Num = n => {
+  verifyNum(n);
+  verifyNum(prime21 * n);
+  verifyNum(prime21 + n);
+  verifyNum(BigInt(`${prime21}${n}`));
+  verifyNum(BigInt(`${n}${prime21}`));
+};
+
+module.exports = { prime21, verifyNum, verify27Num, privkeyToCompressedPubkey };

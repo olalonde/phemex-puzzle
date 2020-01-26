@@ -1,5 +1,4 @@
-const { b58decode, countDigits, compose, bn2buf } = require("./utils");
-const { prime21 } = require("./constants");
+const { b58decode, countDigits, compose, bn2buf, prime21 } = require("./utils");
 const { verifyNum } = require("./verify");
 const permuations = require("./permutations");
 
@@ -10,7 +9,7 @@ const words = ["XRP", "ETH", "BTC", "Phemex"];
 {
   permuations(words).forEach(words => {
     const nums = words.map(b58decode);
-    const num = BigInt(words.map(b58decode).reduce(concat, ""));
+    const num = BigInt(nums.map(n => `${n}`).join(""));
     // 27 digits
     verifyNum(num);
     verifyNum(prime21 * num);

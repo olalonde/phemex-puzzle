@@ -1,5 +1,7 @@
 const base58 = require("bs58");
 
+const prime21 = 957496696762772407663n;
+
 const bn2buf = (n, minBytes = 0) => {
   const hex = n.toString(16);
   buf = Buffer.from(hex, "hex");
@@ -35,4 +37,4 @@ const countDigits = bn => {
 const compose = (...functions) => args =>
   functions.reduceRight((arg, fn) => fn(arg), args);
 
-module.exports = { bn2buf, buf2bn, b58decode, countDigits, compose };
+module.exports = { bn2buf, buf2bn, b58decode, countDigits, compose, prime21 };
