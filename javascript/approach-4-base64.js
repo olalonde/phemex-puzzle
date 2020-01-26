@@ -2,7 +2,6 @@ const { countDigits, compose, bn2buf, buf2bn } = require("./utils");
 const { verify27Num } = require("./verify");
 const permuations = require("./permutations");
 
-const concat = (acc, x) => `${acc}${x}`;
 const words = ["XRP", "ETH", "BTC", "Phemex"];
 
 // a)

@@ -1,6 +1,5 @@
 const { countDigits, buf2bn } = require("./utils");
 
-const concat = (acc, x) => `${acc}${x}`;
 const prod = (acc, x) => acc * x;
 const sum = (acc, x) => acc + x;
 const words = ["XRP", "ETH", "BTC", "Phemex"];
@@ -40,7 +39,7 @@ const words = ["XRP", "ETH", "BTC", "Phemex"];
 
   console.log(countDigits(nums.reduce(prod)));
   // 21
-  console.log(countDigits(nums.reduce(concat)));
+  console.log(countDigits(BigInt(nums.join(""))));
   // 35
 
   // verifyNum(num); verifyNum(prime21 * num);

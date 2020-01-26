@@ -1,8 +1,7 @@
-const { b58decode, countDigits, compose, bn2buf, prime21 } = require("./utils");
+const { b58decode, countDigits } = require("./utils");
 const { verify27Num } = require("./verify");
 const permuations = require("./permutations");
 
-const concat = (acc, x) => `${acc}${x}`;
 const words = ["XRP", "ETH", "BTC", "Phemex"];
 
 // sentence wise
