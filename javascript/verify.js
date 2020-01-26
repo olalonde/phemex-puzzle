@@ -9,7 +9,7 @@ const privkeyToCompressedPubkey = privkeyN => {
 
 // taken from https://www.blockchain.com/btc/tx/367c0e15b246dd48e5e6504beb50f4f184b48012c1ecd3cff5f576dd0463f703
 // also see https://github.com/olalonde/phemex-puzzle/blob/master/notebooks/pubkey%20(found%20from%20spend%20transaction).ipynb
-const phemexCompressedPubkey = 0x02b4a72e4aaa69ba04b80c6891df01f50d191a65eccc61e4e9862d1e421ce815b3;
+const phemexCompressedPubkey = 0x02b4a72e4aaa69ba04b80c6891df01f50d191a65eccc61e4e9862d1e421ce815b3n;
 const verifyNum = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
   const compressedPubKey = privkeyToCompressedPubkey(bn);
   const matches = compressedPubKey === expectedCompressedPubkey;
