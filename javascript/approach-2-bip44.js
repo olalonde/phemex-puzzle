@@ -1,8 +1,6 @@
-const { b58decode, countDigits, compose, bn2buf } = require("./utils");
-const { prime21 } = require("./constants");
-const { verifyNum } = require("./verify");
+const { countDigits } = require("./utils");
 
-const words = ["XRP", "ETH", "BTC", "Phemex"];
+// const words = ["XRP", "ETH", "BTC", "Phemex"];
 
 // https://github.com/bitcoinjs/bip44-constants/blob/master/index.js
 const XRP = 0x80000090n;
