@@ -16,6 +16,7 @@ nums = words.map(w => {
 // console.log(countDigits(nums.reduce(sum, 0n)));
 // 14 digits
 
+// decode letter by letter
 nums = words
   .map(w => {
     const buf = Buffer.from(w, "utf8");
