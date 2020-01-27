@@ -3,7 +3,9 @@ const base58 = require("bs58");
 const prime21 = 957496696762772407663n;
 
 const bn2buf = (n, minBytes = 0) => {
-  const hex = n.toString(16);
+  let hex = n.toString(16);
+  // if odd number of hex chars, node will silently ignore the last one!
+  if (hex.length % 2 !== 0) hex = `0${hex}`;
   buf = Buffer.from(hex, "hex");
   if (buf.length >= minBytes) return buf;
   const delta = minBytes - buf.length;
