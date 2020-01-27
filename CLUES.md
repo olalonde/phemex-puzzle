@@ -1,9 +1,9 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents**
 
 - [Phemex puzzle clues](#phemex-puzzle-clues)
+  - [Summary](#summary)
   - [Official articles](#official-articles)
   - [Possible hints given on telegram](#possible-hints-given-on-telegram)
   - [Appendix 1 - Telegram screenshots](#appendix-1---telegram-screenshots)
