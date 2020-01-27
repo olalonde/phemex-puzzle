@@ -31,6 +31,8 @@ Beer fund: `33SBrHNRc6cWREvL9K34T999iEGtRDAWnd`.
 - Capitalization of words in puzzle matters.
 - 27-digit number is not necessarily a prime.
 - Max's birthday, username, etc. are not relevant.
+- Only Max knows the private key but both Jack and Cecilia (chief marketing) know the
+  method.
 
 ## Official articles
 
@@ -148,6 +150,15 @@ In chronological order:
   some people were really close through screenshots of Telegram
   discussions.
 
+Possible clues from Jack Tao (co-founder):
+
+- Claimed only Max knows the private key but both Cecilia (chief
+  marketing) and himself know the method.
+- Confirmed they don't post misleading information.
+- Said the maze was designed by an artist (this was revealed as part of a joke so maybe not true).
+- Said programming skills is required to solve, also said that
+  programmers have a bit of an advantage.
+
 ## Appendix 1 - Telegram screenshots
 
 ![telegram-1-0.png](./clues/telegram-1-0.png)
@@ -217,3 +228,15 @@ In chronological order:
 ![telegram-6-20.png](./clues/telegram-6-20.png)
 ![telegram-6-21.png](./clues/telegram-6-21.png)
 ![telegram-6-22.png](./clues/telegram-6-22.png)
+
+---
+
+![telegram-jack-01.png](./clues/telegram-jack-01.png)
+![telegram-jack-02.png](./clues/telegram-jack-02.png)
+![telegram-jack-03.png](./clues/telegram-jack-03.png)
+![telegram-jack-04.png](./clues/telegram-jack-04.png)
+![telegram-jack-05.png](./clues/telegram-jack-05.png)
+![telegram-jack-06.png](./clues/telegram-jack-06.png)
+![telegram-jack-07.png](./clues/telegram-jack-07.png)
+![telegram-jack-08.png](./clues/telegram-jack-08.png)
+![telegram-jack-09.png](./clues/telegram-jack-09.png)
