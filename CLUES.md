@@ -1,20 +1,19 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Phemex puzzle clues](#phemex-puzzle-clues)
-  - [Summary](#summary)
-  - [Official articles](#official-articles)
-  - [Possible hints given on telegram](#possible-hints-given-on-telegram)
-  - [Appendix 1 - Telegram screenshots](#appendix-1---telegram-screenshots)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Phemex puzzle clues
 
 A place to collect and compile official clues, proposed solutions and
 relevant information in one place. Feel free to contribute.
 
 PS: Send BTC donations at [33SBrHNRc6cWREvL9K34T999iEGtRDAWnd](https://www.blockchain.com/btc/address/33SBrHNRc6cWREvL9K34T999iEGtRDAWnd) or ETH at [0x6ed8e1bdaf753df9a699edaea8e9c2acc194dd0b](https://www.blockchain.com/eth/address/0x6ed8E1Bdaf753DF9A699eDaea8E9c2AcC194DD0B) to support my beer fund.
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Summary](#summary)
+- [Official articles](#official-articles)
+- [Possible hints given on telegram](#possible-hints-given-on-telegram)
+- [Appendix 1 - Telegram screenshots](#appendix-1---telegram-screenshots)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ![phemex puzzle image](./phemex-puzzle.png)
 
@@ -24,6 +23,10 @@ PS: Send BTC donations at [33SBrHNRc6cWREvL9K34T999iEGtRDAWnd](https://www.block
 - 21 digit prime is `957496696762772407663`.
 - Some words from the image need to be converted into a 27-digit decimal
   number.
+- The solution consists in 3 steps:
+  1. Finding the 21-digit prime
+  2. Converting some words from the image into a 27-digit decimal number.
+  3. This step is not known yet but is probably a function of the numbers found in steps 1 and 2 to generate a private key.
 - List of wrong 27-digit numbers: all numbers that start with `3`, `11`, `27`, or `21`, plus all following numbers: `292369552859534997735785456`, `110671209768548944980739847`, `102334351591489987809745256`, `148305288324511300566909296`, `102334351593652704433055345`, `148305288328731020224972481`. `109315479387323682257496938` `732214536553841474496141447`, `961414474147445365538732214`, `536553896141447732214414744`, `414744536553896141447732214`, `773307574967642777994775797`, `947757974277795749676773307`, `574967694775797773307427779`, `427779574967694775797773307`, `452561023343515914899878097`, `452561023341489987809735159`, `452563515910233414899878097`, `452563515914899878097102334`, `452561489987809710233435159`, `452561489987809735159102334`, `140715953831866323726367136`, `523682311121192242318221112`, `140715953831866323726367136`, `102334452563515914899878097`, `212426137135032177995282192`. Since Max claimed to not have seen the right first 2-digits at that point, we can probably exclude all numbers whose first 2-digits match one of the listed previous numbers.
 - Puzzle is solvable without hints.
 - Capitalization of words in puzzle matters.
