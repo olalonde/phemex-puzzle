@@ -1,3 +1,5 @@
+const powerset = require("./powerset");
+
 // https://stackoverflow.com/a/20871714/96855
 const permutations = inputArr => {
   let result = [];
@@ -19,4 +21,10 @@ const permutations = inputArr => {
   return result;
 };
 
-module.exports = permutations;
+const powerpermute = arr =>
+  powerset(arr)
+    .map(permutations)
+    .flat()
+    .filter(arr => arr.length);
+
+module.exports = { permutations, powerpermute };

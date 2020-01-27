@@ -1,4 +1,4 @@
-const permutations = require("./permutations");
+const { permutations, powerpermute } = require("./permutations");
 
 test("permuations", () => {
   expect(permutations(["a", "b", "c"])).toEqual([
@@ -8,5 +8,14 @@ test("permuations", () => {
     ["b", "c", "a"],
     ["c", "a", "b"],
     ["c", "b", "a"]
+  ]);
+});
+
+test("powerpermute", () => {
+  expect(powerpermute(["a", "b"])).toEqual([
+    ["a"],
+    ["b"],
+    ["a", "b"],
+    ["b", "a"]
   ]);
 });

@@ -1,6 +1,6 @@
 const { b58decode, countDigits } = require("./utils");
 const { verify27Num } = require("./verify");
-const permuations = require("./permutations");
+const { powerpermute, permutation } = require("./permutations");
 
 const words = ["XRP", "ETH", "BTC", "Phemex"];
 
@@ -12,14 +12,17 @@ const words = ["XRP", "ETH", "BTC", "Phemex"];
   // 27
   console.log(b58decode(words.join("")));
   // 148305363320012921807472785n
-  permuations(words).forEach(words => {
-    verify27Num(b58decode(words.join("")));
+  powerpermute(words).forEach(words => {
+    const n = b58decode(words.join(""));
+    if (countDigits(n) === 27) {
+      verify27Num(n);
+    }
   });
 }
 
 // word wise
 {
-  permuations(words).forEach(words => {
+  powerpermute(words).forEach(words => {
     const nums = words.map(b58decode);
     const num = BigInt(nums.map(n => `${n}`).join(""));
     // 27 digits
