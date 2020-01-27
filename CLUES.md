@@ -21,7 +21,7 @@ PS: Send BTC donations at [33SBrHNRc6cWREvL9K34T999iEGtRDAWnd](https://www.block
 
 - Address is [1h8BNZkhsPiu6EKazP19WkGxDw3jHf9aT](https://www.blockchain.com/btc/address/1h8BNZkhsPiu6EKazP19WkGxDw3jHf9aT)
 
-- The compressed public key is `02b4a72e4aaa69ba04b80c6891df01f50d191a65eccc61e4e9862d1e421ce815b3n`.
+- The compressed public key is `02b4a72e4aaa69ba04b80c6891df01f50d191a65eccc61e4e9862d1e421ce815b3`.
 - 21 digit prime is `957496696762772407663`.
 - Some words from the image need to be converted into a 27-digit decimal
   number.
