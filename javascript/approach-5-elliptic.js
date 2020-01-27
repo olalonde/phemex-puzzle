@@ -37,4 +37,4 @@ const Phemex = b58decode("Phemex");
   // 025f81956d5826bad7d30daed2b5c8c98e72046c1ec8323da336445476183fb7ca
   console.log(privKey.getPublic(true, "hex"));
 }
-
+*/
