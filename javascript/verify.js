@@ -100,9 +100,9 @@ const verifyBip32Seed = (
 
 const verifyNum_ = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
   return [
-    // use as private key directly
+    // verify directly as private key directly
     verifyPrivKey(bn, expectedCompressedPubkey),
-    // use as seed for bip32
+    // verify as seed for bip32
     verifyBip32Seed(bn, 0, expectedCompressedPubkey),
     verifyBip32Seed(bn, 21, expectedCompressedPubkey)
   ].includes(true);
@@ -110,16 +110,19 @@ const verifyNum_ = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
 
 // applies hashes to bn before verifying
 const verifyNum = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
+  // verify num but also the result of a few hashes
   return [bn, ...hashFns.map(hash => hash(bn))]
     .map(bn_ => verifyNum_(bn_, expectedCompressedPubkey))
     .includes(true);
 };
 
 const verify27Num = n => {
+  // combine with prime21 in different ways
   return [
     n,
     prime21 * n,
     prime21 + n,
+    prime21 ^ n,
     BigInt(`${prime21}${n}`),
     BigInt(`${n}${prime21}`),
     // bytewise concat
