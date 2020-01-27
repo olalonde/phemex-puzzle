@@ -1,6 +1,6 @@
 const { countDigits, compose, bn2buf, buf2bn } = require("./utils");
 const { verify27Num } = require("./verify");
-const permuations = require("./permutations");
+const { powerpermute } = require("./permutations");
 
 const words = ["XRP", "ETH", "BTC", "Phemex"];
 
@@ -13,7 +13,7 @@ const words = ["XRP", "ETH", "BTC", "Phemex"];
 
 // b)
 {
-  permuations(words).forEach(words => {
+  powerpermute(words).forEach(words => {
     const n = buf2bn(Buffer.from(words.join(""), "base64"));
     verify27Num(n);
     const n2 = words
