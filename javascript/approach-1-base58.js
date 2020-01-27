@@ -56,7 +56,7 @@ const words = ["XRP", "ETH", "BTC", "Phemex"];
 // b)
 {
   num = b58decode("Phemex");
-  console.log(countDigits(num ** 3));
+  console.log(countDigits(num ** 3n));
   // 31 digits
 }
 
