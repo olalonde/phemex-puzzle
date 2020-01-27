@@ -169,6 +169,12 @@ Possible clues from Jack Tao (co-founder):
 - Said the maze was designed by an artist (this was revealed as part of a joke so maybe not true).
 - Said programming skills is required to solve, also said that
   programmers have a bit of an advantage.
+  
+Possible clues from Cecilia (admin):
+- Answer to what is required to solve this puzzle:
+  Cecilia, [17 Jan 2020 at 11:41:27]:
+  "You need to be familiar with cryptography, advanced mathematics and programming, hahaha
+  not easy to get 2.1btc..."
 
 ## Appendix 1 - Telegram screenshots
 
