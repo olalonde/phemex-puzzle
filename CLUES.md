@@ -79,7 +79,7 @@ In chronological order:
 - Max said "Paul is good, you are in correct direction" after Paul
   proposed a new approach based on Google's hiring ad `WWWDOT - GOOGLE = DOTCOM`. For example, he proposed to solve `ETH + XRP + BTC = Phemex`.
   That being said, Max later said that the Google inspiration hint was
-  on related to step 1.
+  only related to step 1.
 - Max said: "3 step, Prime is first step"
 - Max said: "Don't kill me when I announce solution". This might hint to
   the fact that the solution might be considered either "dumb" or
