@@ -27,8 +27,9 @@ PS: Send BTC donations at [33SBrHNRc6cWREvL9K34T999iEGtRDAWnd](https://www.block
   1. Finding the 21-digit prime
   2. Converting some words from the image into a 27-digit decimal number.
   3. This step is not known yet but is probably a function of the numbers found in steps 1 and 2 to generate a private key.
-- The 27-digit number does not start with the 21-digit prime number `957496696762772407663`
-  (otherwise Max would recognize more than the 2-leading digits).
+- The 27-digit number does not start with and probably doesn't contain the
+  21-digit number (since Max claimed he could only recognize the
+  2-leading digits easily).
 - List of wrong 27-digit numbers: all numbers that start with `3`, `11`, `27`, `21` or `22`, plus all following numbers: `292369552859534997735785456`, `110671209768548944980739847`, `102334351591489987809745256`, `148305288324511300566909296`, `102334351593652704433055345`, `148305288328731020224972481`. `109315479387323682257496938` `732214536553841474496141447`, `961414474147445365538732214`, `536553896141447732214414744`, `414744536553896141447732214`, `773307574967642777994775797`, `947757974277795749676773307`, `574967694775797773307427779`, `427779574967694775797773307`, `452561023343515914899878097`, `452561023341489987809735159`, `452563515910233414899878097`, `452563515914899878097102334`, `452561489987809710233435159`, `452561489987809735159102334`, `140715953831866323726367136`, `523682311121192242318221112`, `140715953831866323726367136`, `102334452563515914899878097`, `212426137135032177995282192`. Since Max claimed to not have seen the right first 2-digits at that point, we can probably exclude all numbers whose first 2-digits match one of the listed previous numbers.
 - Puzzle is solvable without hints.
 - Capitalization of words in puzzle matters.
