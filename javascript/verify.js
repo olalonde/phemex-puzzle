@@ -1,4 +1,5 @@
 const { bn2buf, buf2bn, prime21 } = require("./utils");
+const { all: hashFns } = require("./hashes");
 const secp256k1 = require("secp256k1");
 const bip32 = require("bip32");
 const wif = require("wif");
@@ -97,7 +98,7 @@ const verifyBip32Seed = (
     .includes(true);
 };
 
-const verifyNum = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
+const verifyNum_ = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
   return [
     // use as private key directly
     verifyPrivKey(bn, expectedCompressedPubkey),
@@ -107,12 +108,29 @@ const verifyNum = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
   ].includes(true);
 };
 
+// applies hashes to bn before verifying
+const verifyNum = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
+  return [bn, ...hashFns.map(hash => hash(bn))]
+    .map(bn_ => verifyNum_(bn_, expectedCompressedPubkey))
+    .includes(true);
+};
+
 const verify27Num = n => {
-  verifyNum(n);
-  verifyNum(prime21 * n);
-  verifyNum(prime21 + n);
-  verifyNum(BigInt(`${prime21}${n}`));
-  verifyNum(BigInt(`${n}${prime21}`));
+  return [
+    n,
+    prime21 * n,
+    prime21 + n,
+    BigInt(`${prime21}${n}`),
+    BigInt(`${n}${prime21}`),
+    // bytewise concat
+    buf2bn(Buffer.concat([bn2buf(prime21), bn2buf(n)])),
+    buf2bn(Buffer.concat([bn2buf(n), bn2buf(prime21)])),
+    ...hashFns.map(hash => {
+      return hash(prime21) ^ hash(n);
+    })
+  ]
+    .map(num => verifyNum(num))
+    .includes(true);
 };
 
 module.exports = {

@@ -1,5 +1,5 @@
 const { countDigits, b58decode } = require("./utils");
-const { verifyNum } = require("./verify");
+const { verify27Num } = require("./verify");
 
 // const words = ["XRP", "ETH", "BTC", "Phemex"];
 
@@ -15,10 +15,10 @@ console.log(countDigits(0x800000908000003c80000000n)); // 29 digits
 console.log(countDigits(0x800000908000003c80000000n / 21n)); // 28 digits
 
 console.log(countDigits((XRP * ETH * BTC) / 21n)); // 27 digits
-verifyNum((XRP * ETH * BTC) / 21n);
+verify27Num((XRP * ETH * BTC) / 21n);
 
 console.log(countDigits(XRP * ETH * BTC - Phemex)); // 28 digits
 console.log(countDigits((XRP ^ ETH ^ BTC) * Phemex)); // 20 digits
 
-// verifyNum(BigInt(`${prime21}${num}`));
+// verify27Num(BigInt(`${prime21}${num}`));
 // verifyNum(BigInt(`${num}${prime21}`));
