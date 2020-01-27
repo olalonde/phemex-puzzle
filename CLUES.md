@@ -14,7 +14,7 @@
 A place to collect and compile official clues, proposed solutions and
 relevant information in one place. Feel free to contribute.
 
-Beer fund: `33SBrHNRc6cWREvL9K34T999iEGtRDAWnd`.
+PS: Send BTC donations at [33SBrHNRc6cWREvL9K34T999iEGtRDAWnd](https://www.blockchain.com/btc/address/33SBrHNRc6cWREvL9K34T999iEGtRDAWnd) to support my beer fund.
 
 ![phemex puzzle image](./phemex-puzzle.png)
 
