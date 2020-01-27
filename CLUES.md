@@ -28,6 +28,7 @@ PS: Send BTC donations at [33SBrHNRc6cWREvL9K34T999iEGtRDAWnd](https://www.block
 - Puzzle is solvable without hints.
 - Capitalization of words in puzzle matters.
 - 27-digit number is not necessarily a prime.
+- 27-digit number doesn't involve consecutive digits of `e`.
 - Max's birthday, username, etc. are not relevant.
 - Only Max knows the private key but both Jack and Cecilia (chief marketing) know the
   method.
@@ -146,6 +147,8 @@ In chronological order:
 - Max claimed none of the 27-digit numbers he has seen so far start with
   the correct 2 digits.
 - Max confirmed that the 27-digit number doesn't start with `0`.
+- Max said that the 27-digit number doesn't still involve consecutive
+  digits of `e`.
 - Max claims that after solution is revealed, he will be able to prove
   some people were really close through screenshots of Telegram
   discussions.
@@ -233,6 +236,7 @@ Possible clues from Jack Tao (co-founder):
 
 ![telegram-misc-01.png](./clues/telegram-misc-01.png)
 ![telegram-misc-02.png](./clues/telegram-misc-02.png)
+![telegram-misc-03.png](./clues/telegram-misc-03.png)
 
 ---
 
