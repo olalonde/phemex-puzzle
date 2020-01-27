@@ -4,8 +4,14 @@ const secp256k1 = require("secp256k1");
 const bip32 = require("bip32");
 const wif = require("wif");
 
+const MAX_BN = 2n ** 256n;
+
 const privkeyToCompressedPubkey = privkeyN => {
   const privkeyBuf = bn2buf(privkeyN, 32);
+  if (privkeyBuf.length != 32) {
+    console.log(privkeyBuf.length);
+    console.log(privkeyBuf);
+  }
   const compressedPubKey = secp256k1.publicKeyCreate(privkeyBuf);
   return buf2bn(compressedPubKey);
 };
@@ -111,7 +117,15 @@ const verifyNum_ = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
 // applies hashes to bn before verifying
 const verifyNum = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
   // verify num but also the result of a few hashes
-  return [bn, ...hashFns.map(hash => hash(bn))]
+  const bnAscii = buf2bn(Buffer.from(`${bn}`, "ascii"));
+  return [
+    bn,
+    // convert number to ascii string
+    bnAscii < MAX_BN ? bnAscii : 1,
+    // apply hashes,
+    ...hashFns.map(hash => hash(bn)),
+    ...hashFns.map(hash => hash(bnAscii))
+  ]
     .map(bn_ => verifyNum_(bn_, expectedCompressedPubkey))
     .includes(true);
 };
@@ -123,6 +137,8 @@ const verify27Num = n => {
     prime21 * n,
     prime21 + n,
     prime21 ^ n,
+    buf2bn(Buffer.from(`${n}${prime21}`, "ascii")),
+    buf2bn(Buffer.from(`${prime21}${n}`, "ascii")),
     BigInt(`${prime21}${n}`),
     BigInt(`${n}${prime21}`),
     // bytewise concat
@@ -132,6 +148,7 @@ const verify27Num = n => {
       return hash(prime21) ^ hash(n);
     })
   ]
+    .filter(num => num < MAX_BN)
     .map(num => verifyNum(num))
     .includes(true);
 };

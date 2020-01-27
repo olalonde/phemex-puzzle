@@ -1,6 +1,6 @@
-const { b58decode, countDigits } = require("./utils");
+const { b58decode, countDigits, bn2buf, buf2bn } = require("./utils");
 const { verify27Num } = require("./verify");
-const { powerpermute, permutation } = require("./permutations");
+const { powerpermute } = require("./permutations");
 
 const words = ["XRP", "ETH", "BTC", "Phemex"];
 
@@ -24,9 +24,16 @@ const words = ["XRP", "ETH", "BTC", "Phemex"];
 {
   powerpermute(words).forEach(words => {
     const nums = words.map(b58decode);
-    const num = BigInt(nums.map(n => `${n}`).join(""));
+    let num = BigInt(nums.map(n => `${n}`).join(""));
     // 27 digits
-    verify27Num(num);
+    if (countDigits(num) === 27) {
+      verify27Num(num);
+    }
+    num = buf2bn(Buffer.concat(nums.map(bn2buf)));
+
+    if (countDigits(num) === 27) {
+      verify27Num(num);
+    }
   });
 }
 
