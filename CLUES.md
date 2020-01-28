@@ -59,7 +59,7 @@ PS: Send BTC donations at [33SBrHNRc6cWREvL9K34T999iEGtRDAWnd](https://www.block
     - I/O possibly refers to [Input/Output](https://en.wikipedia.org/wiki/Input/output) which could be a
       synonym for communication with the outside world (e.g. the puzzle is solvable without
       additional information found on the web).
-    - I/O possibly refers to the fact that [base58 encoding](https://en.wikipedia.org/wiki/Base58) excludes the letters `I`, `O`, `1`, and `0`.
+    - I/O possibly refers to the fact that [base58 encoding](https://en.wikipedia.org/wiki/Base58) excludes the letters `I`, `O`, `l`, and `0`.
 
 ## Possible hints given on telegram
 
