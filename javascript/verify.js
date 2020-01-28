@@ -1,4 +1,4 @@
-const { bn2buf, buf2bn, prime21 } = require("./utils");
+const { bn2buf, buf2bn, prime21, b58decode } = require("./utils");
 const { all: hashFns } = require("./hashes");
 const { cartesianProduct } = require("./permutations");
 const secp256k1 = require("secp256k1");
@@ -143,10 +143,14 @@ const hmac = (algo, key, input_) => {
 };
 
 const verify27Num = n => {
+  const Phemex = b58decode("Phemex");
   // combine with prime21 in different ways
   return [
     n,
     prime21 * n,
+    n % prime21,
+    (n * Phemex) % prime21,
+    (n + Phemex) % prime21,
     prime21 + n,
     prime21 ^ n,
     buf2bn(Buffer.from(`${n}${prime21}`, "ascii")),
