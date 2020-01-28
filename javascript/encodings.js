@@ -29,7 +29,7 @@ const t9 = (() => {
     ["z", 9]
   ]);
   const decode = str => {
-    return [...str].map(c => lookup.get(c));
+    return [...str].map(c => lookup.get(c.toLowerCase()));
   };
   return { decode };
 })();

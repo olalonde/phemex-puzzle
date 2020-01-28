@@ -6,15 +6,15 @@ const { powerpermute } = require("./permutations");
 const words = ["XRP", "ETH", "BTC", "Phemex"];
 
 {
-  powerpermute(words).forEach(words => {
-    const nums = words.map(t9.decode);
+  powerpermute(words).forEach(ws => {
+    const nums = ws.map(t9.decode).map(w => BigInt(w.join("")));
     let num = BigInt(nums.map(n => `${n}`).join(""));
     verify27Num(num);
     num = buf2bn(Buffer.concat(nums.map(bn2buf)));
     verify27Num(num);
-    num = nums.reduce((acc, x) => acc + x, 0);
+    num = nums.reduce((acc, x) => acc + x, 0n);
     verify27Num(num);
-    num = nums.reduce((acc, x) => acc * x, 1);
+    num = nums.reduce((acc, x) => acc * x, 1n);
     verify27Num(num);
   });
 }
