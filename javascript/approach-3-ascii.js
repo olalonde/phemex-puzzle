@@ -2,6 +2,7 @@ const { countDigits, buf2bn } = require("./utils");
 
 const prod = (acc, x) => acc * x;
 const sum = (acc, x) => acc + x;
+//const words = ["XRP", "ETH", "BTC", "Phemex"];
 const words = ["XRP", "ETH", "BTC", "Phemex"];
 
 // whole sentence

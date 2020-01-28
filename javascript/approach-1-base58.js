@@ -14,9 +14,9 @@ const words = ["XRP", "ETH", "BTC", "Phemex"];
   // 148305363320012921807472785n
   powerpermute(words).forEach(words => {
     const n = b58decode(words.join(""));
-    if (countDigits(n) === 27) {
-      verify27Num(n);
-    }
+    // if (countDigits(n) === 27) {
+    verify27Num(n);
+    // }
   });
 }
 
@@ -26,14 +26,14 @@ const words = ["XRP", "ETH", "BTC", "Phemex"];
     const nums = words.map(b58decode);
     let num = BigInt(nums.map(n => `${n}`).join(""));
     // 27 digits
-    if (countDigits(num) === 27) {
-      verify27Num(num);
-    }
+    // if (countDigits(num) === 27) {
+    verify27Num(num);
+    // }
     num = buf2bn(Buffer.concat(nums.map(bn2buf)));
 
-    if (countDigits(num) === 27) {
-      verify27Num(num);
-    }
+    // if (countDigits(num) === 27) {
+    verify27Num(num);
+    //}
   });
 }
 // word wise with % prime21
@@ -42,14 +42,14 @@ const words = ["XRP", "ETH", "BTC", "Phemex"];
     const nums = words.map(b58decode).map(n => n % prime21);
     let num = BigInt(nums.map(n => `${n}`).join(""));
     // 27 digits
-    if (countDigits(num) === 27) {
-      verify27Num(num);
-    }
+    // if (countDigits(num) === 27) {
+    verify27Num(num);
+    //}
     num = buf2bn(Buffer.concat(nums.map(bn2buf)));
 
-    if (countDigits(num) === 27) {
-      verify27Num(num);
-    }
+    //if (countDigits(num) === 27) {
+    verify27Num(num);
+    //}
   });
 }
 
