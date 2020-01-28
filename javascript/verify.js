@@ -1,8 +1,10 @@
 const { bn2buf, buf2bn, prime21 } = require("./utils");
 const { all: hashFns } = require("./hashes");
+const { cartesianProduct } = require("./permutations");
 const secp256k1 = require("secp256k1");
 const bip32 = require("bip32");
 const wif = require("wif");
+const crypto = require("crypto");
 
 const MAX_BN = 2n ** 256n;
 
@@ -130,6 +132,16 @@ const verifyNum = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
     .includes(true);
 };
 
+const hmac = (algo, key, input_) => {
+  let input = input_;
+  if (typeof input === "bigint") {
+    input = bn2buf(input);
+  }
+  const h = crypto.createHmac(algo, key);
+  h.update(input);
+  return buf2bn(h.digest());
+};
+
 const verify27Num = n => {
   // combine with prime21 in different ways
   return [
@@ -141,6 +153,14 @@ const verify27Num = n => {
     buf2bn(Buffer.from(`${prime21}${n}`, "ascii")),
     BigInt(`${prime21}${n}`),
     BigInt(`${n}${prime21}`),
+    // produce a bunch of hmac signatures
+    ...cartesianProduct([
+      ["sha256", "sha512"],
+      ["Phemex", `${prime21}`, `${n}`],
+      [n, prime21, `${n}`, `${prime21}`]
+    ]).map(([algo, key, input]) => {
+      return hmac(algo, key, input);
+    }),
     // bytewise concat
     buf2bn(Buffer.concat([bn2buf(prime21), bn2buf(n)])),
     buf2bn(Buffer.concat([bn2buf(n), bn2buf(prime21)])),

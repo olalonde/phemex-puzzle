@@ -27,4 +27,21 @@ const powerpermute = arr =>
     .flat()
     .filter(arr => arr.length);
 
-module.exports = { permutations, powerpermute };
+const cartesianProduct = arr => {
+  return arr.reduce(
+    (a, b) => {
+      return a
+        .map(x => {
+          return b.map(y => {
+            return x.concat(y);
+          });
+        })
+        .reduce((a, b) => {
+          return a.concat(b);
+        }, []);
+    },
+    [[]]
+  );
+};
+
+module.exports = { permutations, cartesianProduct, powerpermute };
