@@ -1,7 +1,8 @@
 const {
   cartesianProduct,
   permutations,
-  powerpermute
+  powerpermute,
+  combine
 } = require("./permutations");
 
 test("permuations", () => {
@@ -42,4 +43,8 @@ test("powerpermute", () => {
     ["a", "b"],
     ["b", "a"]
   ]);
+});
+
+test("combine", () => {
+  expect(combine(["BTC", "ETH", "XRP"], 2)).toEqual();
 });

@@ -2,13 +2,24 @@ const { b58decode, countDigits, bn2buf, buf2bn, prime21 } = require("./utils");
 const { verify27Num } = require("./verify");
 const { powerpermute, permutations } = require("./permutations");
 
-const words = ["XRP", "BTC", "ETH", "BTC", "BTC"];
+const words = ["XRP", "BTC", "ETH", "BTC", "USD", "USD"];
 
+/*
 {
   permutations(words).map(words => {
     const num = b58decode(words.join(""));
     console.log(countDigits(num));
     verify27Num(num);
+  });
+}
+*/
+
+{
+  permutations(words).map(words => {
+    const nums = words.map(b58decode);
+    const num = nums.reduce((acc, x) => acc * x, 1n);
+    console.log(countDigits(num));
+    // verify27Num(num);
   });
 }
 

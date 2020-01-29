@@ -15,7 +15,6 @@ const bn2buf = (n, minBytes = 0) => {
 const buf2bn = buf => {
   var hex = [];
   u8 = Uint8Array.from(buf);
-
   u8.forEach(i => {
     let h = i.toString(16);
     if (h.length % 2) {
@@ -32,6 +31,11 @@ const b58decode = str => {
   return buf2bn(buf);
 };
 
+const b58encode = n => {
+  const buf = bn2buf(n);
+  return base58.encode(buf);
+};
+
 const countDigits = bn => {
   return bn.toString().length;
 };
@@ -39,4 +43,12 @@ const countDigits = bn => {
 const compose = (...functions) => args =>
   functions.reduceRight((arg, fn) => fn(arg), args);
 
-module.exports = { bn2buf, buf2bn, b58decode, countDigits, compose, prime21 };
+module.exports = {
+  bn2buf,
+  buf2bn,
+  b58decode,
+  countDigits,
+  compose,
+  prime21,
+  b58encode
+};
