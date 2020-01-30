@@ -4,31 +4,65 @@ const {
   bn2buf,
   buf2bn,
   prime21,
-  b58encode
+  b58encode,
+  dateRange
 } = require("./utils");
 const { verify27Num } = require("./verify");
 const { permutations, cartesianProduct } = require("./permutations");
-
-const XRP = [1, 1, 2013];
-const ETH = [7, 30, 2015];
-const BTC = [1, 9, 2009];
-const Phemex = [11, 25, 2019];
+const cliProgress = require("cli-progress");
 
 // dates possibly associated with string [day, month, year]
-const possibleDates = cartesianProduct(
+const dateCombos = cartesianProduct(
   ...[
     // XRP
-    [
-      [1, 1, 2013],
-      [1, 2, 2013]
-    ],
+    // some time in 2013
+    dateRange([1, 1, 2013], [1, 1, 2014]),
     // ETH
-    [[7, 30, 2015]],
+    [
+      // genesis block
+      [30, 7, 2015]
+    ],
     // BTC
-    [[1, 9, 2009]],
+    [
+      [9, 1, 2009] /* release date from wikipedia */,
+      [3, 1, 2009] /* genesis block */
+    ],
     // Phemex
-    [[11, 25, 2019]]
+    // some time in 2019
+    dateRange([1, 1, 2019], [1, 1, 2020])
   ]
 );
 
-console.log(possibleDates);
+// 4 possible date formattings: d/m/y , m/d/y, y/d/m, y/m/d
+const formats = [
+  [0, 1, 2],
+  [1, 0, 2],
+  [1, 2, 0],
+  [2, 1, 0]
+];
+
+const transformDate = ([d, m, y], [datePos, monthPos, yearPos]) => {
+  const res = new Array(3);
+  res[datePos] = d;
+  res[monthPos] = m;
+  res[yearPos] = y;
+  return res;
+};
+
+const total = dateCombos.length * formats.length;
+console.log("date combos:", dateCombos.length * formats.length);
+let i = 0;
+const progress = new cliProgress.SingleBar({});
+progress.start(total, 0);
+
+formats.forEach(format => {
+  dateCombos
+    .map(combo => combo.map(date => transformDate(date, format)))
+    .forEach(combo => {
+      const str = combo.map(date => date.join("")).join("");
+      const n = BigInt(str);
+      verify27Num(n);
+      i++;
+      progress.update(i);
+    });
+});

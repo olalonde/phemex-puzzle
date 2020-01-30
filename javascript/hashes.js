@@ -33,6 +33,7 @@ module.exports = {
   all,
   sha256,
   doubleSha256,
+  ripemd160,
   sha256ripemd160,
   doubleSha256Ripemd160,
   ripemd160Sha256,

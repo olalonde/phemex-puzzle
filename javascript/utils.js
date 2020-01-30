@@ -43,6 +43,29 @@ const countDigits = bn => {
 const compose = (...functions) => args =>
   functions.reduceRight((arg, fn) => fn(arg), args);
 
+const toDateObject = ([d, m, y]) => new Date(`${y}-${m}-${d}`);
+
+// [start, end[
+const dateRange = (start, end) => {
+  const startDate = toDateObject(start);
+  const endDate = toDateObject(end);
+
+  const res = [];
+  let d = startDate;
+  while (d < endDate) {
+    res.push(d);
+    const tomorrow = new Date(d.getTime());
+    tomorrow.setDate(d.getDate() + 1);
+    d = tomorrow;
+  }
+  return res.map(d => [d.getDate(), d.getMonth() + 1, d.getFullYear()]);
+};
+
+// [start, end[
+const range = (start, end) => {
+  return [...Array(end - start).keys()].map(d => d + start);
+};
+
 module.exports = {
   bn2buf,
   buf2bn,
@@ -50,5 +73,7 @@ module.exports = {
   countDigits,
   compose,
   prime21,
-  b58encode
+  b58encode,
+  dateRange,
+  range
 };

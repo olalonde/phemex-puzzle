@@ -1,5 +1,5 @@
 const { bn2buf, buf2bn, prime21, b58decode } = require("./utils");
-const { all: hashFns } = require("./hashes");
+const { all: hashFns, sha256, doubleSha256, ripemd160 } = require("./hashes");
 const { cartesianProduct } = require("./permutations");
 const secp256k1 = require("secp256k1");
 const bip32 = require("bip32");
@@ -109,10 +109,10 @@ const verifyBip32Seed = (
 const verifyNum_ = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
   return [
     // verify directly as private key directly
-    verifyPrivKey(bn, expectedCompressedPubkey),
+    verifyPrivKey(bn, expectedCompressedPubkey)
     // verify as seed for bip32
-    verifyBip32Seed(bn, 0, expectedCompressedPubkey),
-    verifyBip32Seed(bn, 21, expectedCompressedPubkey)
+    // verifyBip32Seed(bn, 0, expectedCompressedPubkey)
+    // verifyBip32Seed(bn, 21, expectedCompressedPubkey)
   ].includes(true);
 };
 
@@ -125,8 +125,12 @@ const verifyNum = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
     // convert number to ascii string
     bnAscii < MAX_BN ? bnAscii : 1,
     // apply hashes,
-    ...hashFns.map(hash => hash(bn)),
-    ...hashFns.map(hash => hash(bnAscii))
+    ...[sha256].map(hash => hash(bn)),
+    ...[sha256].map(hash => hash(bnAscii))
+    // ...[sha256, doubleSha256, ripemd160].map(hash => hash(bn)),
+    // ...[sha256, doubleSha256, ripemd160].map(hash => hash(bnAscii))
+    // ...hashFns.map(hash => hash(bn)),
+    // ...hashFns.map(hash => hash(bnAscii))
   ]
     .map(bn_ => verifyNum_(bn_, expectedCompressedPubkey))
     .includes(true);
@@ -143,34 +147,41 @@ const hmac = (algo, key, input_) => {
 };
 
 const verify27Num = n => {
-  const Phemex = b58decode("Phemex");
+  // const Phemex = b58decode("Phemex");
   // combine with prime21 in different ways
   return [
     n,
     prime21 * n,
-    n % prime21,
-    (n * Phemex) % prime21,
-    (n + Phemex) % prime21,
+    // n % prime21,
+    // (n * Phemex) % prime21,
+    // (n + Phemex) % prime21,
     prime21 + n,
-    prime21 ^ n,
-    buf2bn(Buffer.from(`${n}${prime21}`, "ascii")),
-    buf2bn(Buffer.from(`${prime21}${n}`, "ascii")),
+    prime21 ^ n, // xor
+    // buf2bn(Buffer.from(`${n}${prime21}`, "ascii")),
+    // buf2bn(Buffer.from(`${prime21}${n}`, "ascii")),
     BigInt(`${prime21}${n}`),
-    BigInt(`${n}${prime21}`),
+    BigInt(`${n}${prime21}`)
     // produce a bunch of hmac signatures
-    ...cartesianProduct([
-      ["sha256", "sha512"],
-      ["Phemex", `${prime21}`, `${n}`],
-      [n, prime21, `${n}`, `${prime21}`]
-    ]).map(([algo, key, input]) => {
+    /*
+    ...cartesianProduct(
+      ...[
+        ["sha256", "sha512"],
+        ["Phemex", `${prime21}`, `${n}`],
+        [n, prime21, `${n}`, `${prime21}`]
+      ]
+    ).map(([algo, key, input]) => {
       return hmac(algo, key, input);
     }),
+    */
     // bytewise concat
-    buf2bn(Buffer.concat([bn2buf(prime21), bn2buf(n)])),
-    buf2bn(Buffer.concat([bn2buf(n), bn2buf(prime21)])),
+    // buf2bn(Buffer.concat([bn2buf(prime21), bn2buf(n)])),
+    // buf2bn(Buffer.concat([bn2buf(n), bn2buf(prime21)]))
+
+    /*
     ...hashFns.map(hash => {
       return hash(prime21) ^ hash(n);
     })
+    */
   ]
     .filter(num => num < MAX_BN)
     .map(num => verifyNum(num))
