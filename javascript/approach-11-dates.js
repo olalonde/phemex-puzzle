@@ -16,7 +16,7 @@ const dateCombos = cartesianProduct(
   ...[
     // XRP
     // some time in 2013
-    dateRange([1, 1, 2013], [1, 1, 2014]),
+    dateRange([1, 10, 2012], [1, 1, 2014]),
     // ETH
     [
       // genesis block
@@ -50,7 +50,7 @@ const transformDate = ([d, m, y], [datePos, monthPos, yearPos]) => {
 };
 
 const total = dateCombos.length * formats.length;
-console.log("date combos:", dateCombos.length * formats.length);
+console.log(`date combos: ${total}`);
 let i = 0;
 const progress = new cliProgress.SingleBar({});
 progress.start(total, 0);
@@ -61,7 +61,9 @@ formats.forEach(format => {
     .forEach(combo => {
       const str = combo.map(date => date.join("")).join("");
       const n = BigInt(str);
-      verify27Num(n);
+      if (countDigits(n) === 27) {
+        verify27Num(n);
+      }
       i++;
       progress.update(i);
     });

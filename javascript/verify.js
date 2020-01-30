@@ -45,57 +45,61 @@ const verifyPrivKey = (
 const verifyBip32Seed = (
   bn,
   k = 0, // optional index
-  expectedCompressedPubkey = phemexCompressedPubkey
+  expectedCompressedPubkey = phemexCompressedPubkey,
+  paths_ = false
 ) => {
   const masterNode = bip32.fromSeed(bn2buf(bn, 16));
   // that should more or less covers it
-  const childNodes = [
-    "m/0",
-    "m/1",
-    `m/${k}`,
-    "m/0/0",
-    "m/0/1",
-    `m/0/${k}`,
-    "m/1/0",
-    "m/1/1",
-    `m/1/${k}`,
-    `m/${k}/0`,
-    `m/${k}/1`,
-    `m/0'/0`,
-    `m/0'/1`,
-    `m/0'/${k}`,
-    `m/${k}'/0`,
-    `m/${k}'/1`,
-    // bitcoin core
-    `m/0'/0'/0'`,
-    `m/0'/0'/1'`,
-    `m/0'/0'/${k}'`,
-    // ledger
-    `m/44'/0'/0'/0`,
-    `m/44'/0'/0'/1`,
-    `m/44'/0'/0'/${k}`,
-    `m/44'/0'/1'/0`,
-    `m/44'/0'/1'/1`,
-    `m/44'/0'/1'/${k}`,
-    `m/44'/0'/${k}'/0`,
-    `m/44'/0'/${k}'/1`,
-    `m/44'/${k}'/0'/0`,
-    `m/44'/${k}'/1'/0`,
-    `m/44'/${k}'/0'/1`,
-    `m/44'/${k}'/1'/1`,
-    // blockchain.info
-    `m/44'/0'/0'/0`,
-    `m/44'/0'/0'/${k}`,
-    // bip44
-    `m/44'/0'/0'/0/0`,
-    `m/44'/0'/0'/0/1`,
-    `m/44'/0'/0'/0/${k}`,
-    `m/44'/0'/0'/1/${k}`,
-    `m/44'/0'/${k}'/0/0`,
-    `m/44'/0'/${k}'/1/0`,
-    `m/44'/0'/${k}'/0/1`,
-    `m/44'/0'/${k}'/1/1`
-  ].map(path => masterNode.derivePath(path));
+  const paths = paths_
+    ? paths_
+    : [
+        "m/0",
+        "m/1",
+        `m/${k}`,
+        "m/0/0",
+        "m/0/1",
+        `m/0/${k}`,
+        "m/1/0",
+        "m/1/1",
+        `m/1/${k}`,
+        `m/${k}/0`,
+        `m/${k}/1`,
+        `m/0'/0`,
+        `m/0'/1`,
+        `m/0'/${k}`,
+        `m/${k}'/0`,
+        `m/${k}'/1`,
+        // bitcoin core
+        `m/0'/0'/0'`,
+        `m/0'/0'/1'`,
+        `m/0'/0'/${k}'`,
+        // ledger
+        `m/44'/0'/0'/0`,
+        `m/44'/0'/0'/1`,
+        `m/44'/0'/0'/${k}`,
+        `m/44'/0'/1'/0`,
+        `m/44'/0'/1'/1`,
+        `m/44'/0'/1'/${k}`,
+        `m/44'/0'/${k}'/0`,
+        `m/44'/0'/${k}'/1`,
+        `m/44'/${k}'/0'/0`,
+        `m/44'/${k}'/1'/0`,
+        `m/44'/${k}'/0'/1`,
+        `m/44'/${k}'/1'/1`,
+        // blockchain.info
+        `m/44'/0'/0'/0`,
+        `m/44'/0'/0'/${k}`,
+        // bip44
+        `m/44'/0'/0'/0/0`,
+        `m/44'/0'/0'/0/1`,
+        `m/44'/0'/0'/0/${k}`,
+        `m/44'/0'/0'/1/${k}`,
+        `m/44'/0'/${k}'/0/0`,
+        `m/44'/0'/${k}'/1/0`,
+        `m/44'/0'/${k}'/0/1`,
+        `m/44'/0'/${k}'/1/1`
+      ];
+  const childNodes = paths.map(path => masterNode.derivePath(path));
 
   // try a few derived keys
   return [masterNode, ...childNodes]
@@ -109,9 +113,15 @@ const verifyBip32Seed = (
 const verifyNum_ = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
   return [
     // verify directly as private key directly
-    verifyPrivKey(bn, expectedCompressedPubkey)
+    verifyPrivKey(bn, expectedCompressedPubkey),
     // verify as seed for bip32
-    // verifyBip32Seed(bn, 0, expectedCompressedPubkey)
+    verifyBip32Seed(bn, 0, expectedCompressedPubkey, [
+      "m/0",
+      "m/0'/0",
+      "m/0/0",
+      "m/44'/0'/0'/0/0"
+    ])
+    //berifyBip32Seed(bn, 0, expectedCompressedPubkey)
     // verifyBip32Seed(bn, 21, expectedCompressedPubkey)
   ].includes(true);
 };
