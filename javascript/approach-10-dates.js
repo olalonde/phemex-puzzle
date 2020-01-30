@@ -11,8 +11,7 @@ const { permutations } = require("./permutations");
 
 // creation date [date, month, yeat]
 // release date
-const XRP = [11, 2013];
-// 	30 July 2015
+const XRP = [1, 1, 2013];
 const ETH = [7, 30, 2015];
 const BTC = [1, 9, 2009];
 const Phemex = [11, 25, 2019];
