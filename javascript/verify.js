@@ -42,13 +42,12 @@ const verifyPrivKey = (
   return matches;
 };
 
-const verifyBip32Seed = (
-  bn,
+const verifyBip32Node = (
+  node,
   k = 0, // optional index
   expectedCompressedPubkey = phemexCompressedPubkey,
   paths_ = false
 ) => {
-  const masterNode = bip32.fromSeed(bn2buf(bn, 16));
   // that should more or less covers it
   const paths = paths_
     ? paths_
@@ -99,13 +98,29 @@ const verifyBip32Seed = (
         `m/44'/0'/${k}'/0/1`,
         `m/44'/0'/${k}'/1/1`
       ];
-  const childNodes = paths.map(path => masterNode.derivePath(path));
+  const childNodes = paths.map(path => node.derivePath(path));
 
   // try a few derived keys
-  return [masterNode, ...childNodes]
-    .map(node => {
-      const privKey = buf2bn(node.privateKey);
+  return [node, ...childNodes]
+    .map(childNode => {
+      const privKey = buf2bn(childNode.privateKey);
       return verifyPrivKey(privKey, expectedCompressedPubkey);
+    })
+    .includes(true);
+};
+
+const verifyBip32 = (bn, ...args) => {
+  const bnBuf = bn2buf(bn, 32);
+  const prime21Buf = bn2buf(prime21, 32);
+  const nodeFromSeed = bip32.fromSeed(bn2buf(bn, 16));
+  // use num27 as priv key and prime21 as chain code
+  const nodeFromPrivKey1 = bip32.fromPrivateKey(bnBuf, prime21Buf);
+  // use prime21 as priv key and num27 as chain code
+  const nodeFromPrivKey2 = bip32.fromPrivateKey(prime21Buf, bnBuf);
+  // try a few derived keys
+  return [nodeFromSeed, nodeFromPrivKey1, nodeFromPrivKey2]
+    .map(node => {
+      return verifyBip32Node(node, ...args);
     })
     .includes(true);
 };
@@ -115,14 +130,14 @@ const verifyNum_ = (bn, expectedCompressedPubkey = phemexCompressedPubkey) => {
     // verify directly as private key directly
     verifyPrivKey(bn, expectedCompressedPubkey),
     // verify as seed for bip32
-    verifyBip32Seed(bn, 0, expectedCompressedPubkey, [
+    verifyBip32(bn, 0, expectedCompressedPubkey, [
       "m/0",
       "m/0'/0",
       "m/0/0",
       "m/44'/0'/0'/0/0"
     ])
     //berifyBip32Seed(bn, 0, expectedCompressedPubkey)
-    // verifyBip32Seed(bn, 21, expectedCompressedPubkey)
+    // verifyBip32(bn, 21, expectedCompressedPubkey)
   ].includes(true);
 };
 
@@ -203,5 +218,5 @@ module.exports = {
   verifyNum,
   verify27Num,
   privkeyToCompressedPubkey,
-  verifyBip32Seed
+  verifyBip32
 };

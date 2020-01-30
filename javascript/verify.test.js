@@ -1,7 +1,7 @@
 const {
   verifyNum,
   privkeyToCompressedPubkey,
-  verifyBip32Seed
+  verifyBip32
 } = require("./verify");
 
 test("privkeyToCompressedPubkey", () => {
@@ -21,7 +21,7 @@ test("verifyNum works", () => {
 
 test("verify bip32 seed", () => {
   // taken from https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#test-vectors
-  const matches = verifyBip32Seed(
+  const matches = verifyBip32(
     0x000102030405060708090a0b0c0d0e0fn,
     0,
     0x0339a36013301597daef41fbe593a02cc513d0b55527ec2df1050e2e8ff49c85c2n
@@ -31,7 +31,7 @@ test("verify bip32 seed", () => {
 
 test("verify bip32 seed (match with child pubkey)", () => {
   // taken from https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#test-vectors
-  const matches = verifyBip32Seed(
+  const matches = verifyBip32(
     0x000102030405060708090a0b0c0d0e0fn,
     0,
     // chain m/0'/1
