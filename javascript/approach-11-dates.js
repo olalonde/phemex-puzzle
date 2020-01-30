@@ -16,7 +16,7 @@ const dateCombos = cartesianProduct(
   ...[
     // XRP
     // some time in 2013
-    dateRange([1, 10, 2012], [1, 1, 2014]),
+    dateRange([1, 1, 2012], [3, 1, 2013]),
     // ETH
     [
       // genesis block
