@@ -27,22 +27,22 @@ const powerpermute = arr =>
     .flat()
     .filter(arr => arr.length);
 
-const cartesianProduct = arr => {
+function cartesianProduct(...arr) {
   return arr.reduce(
-    (a, b) => {
+    function(a, b) {
       return a
-        .map(x => {
-          return b.map(y => {
-            return x.concat(y);
+        .map(function(x) {
+          return b.map(function(y) {
+            return x.concat([y]);
           });
         })
-        .reduce((a, b) => {
+        .reduce(function(a, b) {
           return a.concat(b);
         }, []);
     },
     [[]]
   );
-};
+}
 
 // https://github.com/trekhleb/javascript-algorithms/blob/master/src/algorithms/sets/combinations/combineWithoutRepetitions.js
 /**

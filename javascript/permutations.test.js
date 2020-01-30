@@ -17,17 +17,13 @@ test("permuations", () => {
 });
 
 test("cartesianProduct", () => {
-  console.log(
-    cartesianProduct([
-      ["sha256", "sha512"],
-      ["prime21", "n"]
-    ])
-  );
   expect(
-    cartesianProduct([
-      ["sha256", "sha512"],
-      ["prime21", "n"]
-    ])
+    cartesianProduct(
+      ...[
+        ["sha256", "sha512"],
+        ["prime21", "n"]
+      ]
+    )
   ).toEqual([
     ["sha256", "prime21"],
     ["sha256", "n"],
@@ -37,21 +33,17 @@ test("cartesianProduct", () => {
 });
 
 test("cartesianProduct arrays", () => {
-  console.log(
-    cartesianProduct([
+  const prod = cartesianProduct(
+    ...[
       [
-        ["sha", 512],
-        ["sha", 256]
+        ["sha", 256],
+        ["sha", 512]
       ],
       ["prime21", "n"]
-    ])
+    ]
   );
-  expect(
-    cartesianProduct([
-      ["sha256", "sha512"],
-      ["prime21", "n"]
-    ])
-  ).toEqual([
+  console.log(prod);
+  expect(prod).toEqual([
     [["sha", 256], "prime21"],
     [["sha", 256], "n"],
     [["sha", 512], "prime21"],
