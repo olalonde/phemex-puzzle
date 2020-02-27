@@ -60,6 +60,10 @@ PS: Send BTC donations at [33SBrHNRc6cWREvL9K34T999iEGtRDAWnd](https://www.block
       synonym for communication with the outside world (e.g. the puzzle is solvable without
       additional information found on the web).
     - I/O possibly refers to the fact that [base58 encoding](https://en.wikipedia.org/wiki/Base58) excludes the letters `I`, `O`, `l`, and `0`.
+    
+- [The Last Hint of Phemex 2.1BTC Puzzle](https://phemex.com/references/articles/the-last-hint-of-phemex-2-1btc-puzzle)
+  - "After meeting the Phemex team, the Goddess Pheme repeated the words “little is big”, twice within three days."
+  - "We believe this hint is the best way to reward those of you that have continued to work hard on the Puzzle."
 
 ## Possible hints given on telegram
 
