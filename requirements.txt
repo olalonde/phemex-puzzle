@@ -5,7 +5,7 @@ attrs==19.3.0
 backcall==0.1.0
 base58==2.0.0
 bit==0.6.0
-bleach==3.1.0
+bleach==3.1.2
 certifi==2019.11.28
 cffi==1.13.2
 chardet==3.0.4
